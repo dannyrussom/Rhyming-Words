@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var myText = findViewById<TextView>(R.id.textyou).apply {
-            text = "awesome job"
+            text = "keep it up"
         }
     }
 }
