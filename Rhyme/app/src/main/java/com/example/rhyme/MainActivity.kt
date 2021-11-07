@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    //check the words list for the word and show it on the view
     fun rhyming(v: View){
         var w = ""
         var p = 4
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 p = findViewById<EditText>(R.id.precision).text.toString().toInt()
             }
             if(p > w.length){
-                p = w.length
+                p = w.length // makes sure that the precision length doesn't exceed the word length
             }
             for (wrd in wrds){
                 if(wrd.length > p){
