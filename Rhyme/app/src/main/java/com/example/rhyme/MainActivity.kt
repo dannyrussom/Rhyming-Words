@@ -32,31 +32,42 @@ class MainActivity : AppCompatActivity() {
                 p = w.length // makes sure that the precision length doesn't exceed the word length
             }
             for (wrd in wrds){
-                if(wrd.length > p){
-                    if(wrd.reversed().substring(0, p).toString() == w.reversed().substring(0, p).toString()){
-                        if(findViewById<CheckBox>(R.id.prefix).isChecked){
-                            for (c in w){
-                                if(c in vowels){
-                                    v = c
-                                    break
+                if(wrd != w) {
+                    if (wrd.length > p) {
+                        if (wrd.reversed().substring(0, p).toString() == w.reversed()
+                                .substring(0, p).toString()
+                        ) {
+                            if (findViewById<CheckBox>(R.id.prefix).isChecked) {
+                                for (c in w) {
+                                    if (c in vowels) {
+                                        v = c
+                                        break
+                                    }
                                 }
-                            }
-                            if(v in wrd.substring(0,3)){
+                                if (v in wrd.substring(0, 3)) {
+                                    rhymWords += "\n"
+                                    rhymWords += wrd
+                                }
+                                continue
+                            } else {
                                 rhymWords += "\n"
                                 rhymWords += wrd
                             }
-                            continue
-                        }
-                        else{
-                            rhymWords += "\n"
-                            rhymWords += wrd
                         }
                     }
                 }
             }
-            var myList = findViewById<TextView>(R.id.list).apply {
-                text = rhymWords + "nothin"
+            if(findViewById<TextView>(R.id.list).text.toString() == ""){
+                var myList = findViewById<TextView>(R.id.list).apply {
+                    text = "no rhyming words found"
+                }
             }
+            else{
+                var myList = findViewById<TextView>(R.id.list).apply {
+                    text = rhymWords
+                }
+            }
+
         }
         else{
             var myList = findViewById<TextView>(R.id.list).apply {
